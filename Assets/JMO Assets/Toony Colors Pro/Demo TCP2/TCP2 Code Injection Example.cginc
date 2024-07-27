@@ -44,11 +44,12 @@ half4 _InjectedColor;
 #endif
 
 ///         The '//# REPLACE:' line defines a line to replace in the final .shader, so that you can override or append code to about anywhere in your .shader file.
-//# REPLACE:
-			#ifdef UNITY_LIGHT_FUNCTION_APPLY_INDIRECT
+///         Note: searching for the line to replace only works on a single line; however you can replace it with multiple lines.
+//# REPLACE: Disable Ambient
+            #ifdef UNITY_LIGHT_FUNCTION_APPLY_INDIRECT
 ///         The '//# WITH:' defines the lines with which to replace the found line.
 ///         You can re-add the original search line if you only want to append lines to it.
 //# WITH:
-			#if false
+            #if false
 ///         The '//# INFO: ' prefix defines additional information for this replacement that will show in the Shader Generator 2.
 //# INFO: Disable applying indirect diffuse (ambient color)
