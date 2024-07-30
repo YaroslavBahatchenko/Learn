@@ -99,7 +99,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 4201327376950025646}
-  launchPower: 20
+  launchPower: 10
+  bounceCount: 3
+  explosionEffect: {fileID: 185213551805216070, guid: a0abd40aa6c936e4e9a59bd23bda5561, type: 3}
+  mask:
+    serializedVersion: 2
+    m_Bits: 64
+  radius: 2
 --- !u!54 &4201327376950025646
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -134,7 +140,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2624074603197231646}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: de15cbf0d1a6e1044899d83a892d704f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
