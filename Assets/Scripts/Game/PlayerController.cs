@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : SingletonMono<PlayerController>
 {
     [SerializeField] private FloatingJoystick joystick;
     [SerializeField] private Grenade grenadePrefab;
     [SerializeField] private Transform aimLine;
     [SerializeField] private Transform spawnPoint;
     private Vector3 launchDirection;
+    private bool isCanShoot = true;
 
     // Start is called before the first frame update
     private void Start()
@@ -44,8 +45,21 @@ public class PlayerController : MonoBehaviour
     // бросаем гранату
     private void Shoot()
     {
+        if (!isCanShoot)
+        {
+            return;
+        }
+
         Debug.Log("shoot");
+        //создаем гранату
         Grenade newGrenade = Instantiate(grenadePrefab, spawnPoint.position, Quaternion.identity);
+        // вызываем у гранаты метод запуска
         newGrenade.Launch(launchDirection);
+        UIController.Instance.UseGrenade();
+    }
+
+    public void CannotShoot()
+    {
+        isCanShoot = false;
     }
 }

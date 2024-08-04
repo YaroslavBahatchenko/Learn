@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,21 +7,22 @@ public class Grenade : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float launchPower = 5f;
     [SerializeField] private int bounceCount = 3;
-    [SerializeField] private ParticleSystem explosionEffect;
-    [SerializeField] private LayerMask mask;
     [SerializeField] private float radius = 3f;
-    private int curentBounceCount = 0;
+    [SerializeField] private LayerMask mask;
+    [SerializeField] private ParticleSystem explosionEffect;
+    private int currentBounceCount = 0;
 
     public void Launch(Vector3 direction)
     {
         Debug.Log("Launch grenade");
+        // бросаем гранату в указанном напраплении
         rb.AddForce(direction * launchPower, ForceMode.VelocityChange);
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        curentBounceCount++;
-        if (curentBounceCount >= bounceCount)
+        currentBounceCount++;
+        if (currentBounceCount >= bounceCount)
         {
             Explode();
         }

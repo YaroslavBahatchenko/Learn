@@ -5,36 +5,19 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-    private Rigidbody[] ragdollBodies;
-    private Collider[] ragdollColliders;
+    [SerializeField] private RagdollController ragdollController;
 
     private void Start()
     {
-        ragdollBodies = animator.GetComponentsInChildren<Rigidbody>();
-        foreach (Rigidbody body in ragdollBodies)
-        {
-            body.isKinematic = true;
-        }
-
-        ragdollColliders = animator.GetComponentsInChildren<Collider>();
-        foreach (Collider collider in ragdollColliders)
-        {
-            collider.enabled = false;
-        }
+        EnemyController.Instance.AddEnemy(this);
     }
 
     public void Death()
     {
         Debug.Log("Enemy dead");
-        foreach (Rigidbody body in ragdollBodies)
-        {
-            body.isKinematic = false;
-        }
-
-        foreach (Collider collider in ragdollColliders)
-        {
-            collider.enabled = true;
-        }
+        animator.enabled = false;
+        ragdollController.Ragdoll(true);
         gameObject.layer = 7;
+        EnemyController.Instance.RemoveEnemy(this);
     }
 }
