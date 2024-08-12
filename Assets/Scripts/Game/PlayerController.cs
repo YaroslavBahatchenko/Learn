@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : SingletonMono<PlayerController>
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] private FloatingJoystick joystick;
     [SerializeField] private Grenade grenadePrefab;
     [SerializeField] private Transform aimLine;
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private UIMainScreen mainScreen;
     private Vector3 launchDirection;
     private bool isCanShoot = true;
 
@@ -21,13 +22,13 @@ public class PlayerController : SingletonMono<PlayerController>
     private void Update()
     {
         // нажата левая кнопка мыши. Включаем линию прицеливания
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && isCanShoot)
         {
             aimLine.gameObject.SetActive(true);
         }
 
         // отпускаем левую кнопку мыши. Выключаем линию прицеливания и бросаем гранату
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && isCanShoot)
         {
             aimLine.gameObject.SetActive(false);
             Shoot(); // бросаем гранату
@@ -55,7 +56,7 @@ public class PlayerController : SingletonMono<PlayerController>
         Grenade newGrenade = Instantiate(grenadePrefab, spawnPoint.position, Quaternion.identity);
         // вызываем у гранаты метод запуска
         newGrenade.Launch(launchDirection);
-        UIController.Instance.UseGrenade();
+        mainScreen.UseGrenade();
     }
 
     public void CannotShoot()

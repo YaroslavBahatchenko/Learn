@@ -3,28 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class UIController : SingletonMono<UIController>
+public class UIController : MonoBehaviour
 {
-    [SerializeField] private int bombCount = 1;
-    [SerializeField] private UIBombIcon bombIconPrefab;
-    [SerializeField] private Transform bombGroup;
-    private List<UIBombIcon> bombIcons = new List<UIBombIcon>();
+    [SerializeField] private UIMainScreen mainScreen;
+    [SerializeField] private UILoseScreen loseScreen;
+    [SerializeField] private UIWinScreen winScreen;
 
     private void Start()
     {
-        for (int i = 0; i < bombCount; i++)
-        {
-            bombIcons.Add(Instantiate(bombIconPrefab, bombGroup));
-        }
+        mainScreen.gameObject.SetActive(true);
+        loseScreen.gameObject.SetActive(false);
+        winScreen.gameObject.SetActive(false);
     }
 
-    public void UseGrenade()
+    public void PlayerWin()
     {
-        bombIcons.Last().UseGrenade();
-        bombIcons.RemoveAt(bombIcons.Count - 1);
-        if (bombIcons.Count == 0)
-        {
-            PlayerController.Instance.CannotShoot();
-        }
+        mainScreen.gameObject.SetActive(false);
+        loseScreen.gameObject.SetActive(false);
+        winScreen.gameObject.SetActive(true);
+    }
+
+    public void PlayerLose()
+    {
+        mainScreen.gameObject.SetActive(false);
+        loseScreen.gameObject.SetActive(true);
+        winScreen.gameObject.SetActive(false);
     }
 }
+
