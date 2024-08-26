@@ -27,11 +27,17 @@ public class UIMainScreen : MonoBehaviour
         bombIcons.RemoveAt(bombIcons.Count - 1);
         if (bombIcons.Count == 0)
         {
-            playerController.CannotShoot();
-            if (enemyController.EnemyCount() > 0)
-            {
-                uIController.PlayerLose();
-            }
+            StartCoroutine(CheckPlayerLose());
+        }
+    }
+
+    private IEnumerator CheckPlayerLose()
+    {
+        playerController.CannotShoot();
+        yield return new WaitForSeconds(3f);
+        if (enemyController.EnemyCount() > 0)
+        {
+            uIController.PlayerLose();
         }
     }
 }
