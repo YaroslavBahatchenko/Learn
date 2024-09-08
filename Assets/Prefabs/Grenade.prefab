@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.8882854, y: -0.33057407, z: 0.21815287, w: -0.2325495}
   m_LocalPosition: {x: -2.278, y: 1.898, z: 0.915}
-  m_LocalScale: {x: 1.4536366, y: 1.4536375, z: 1.4536375}
+  m_LocalScale: {x: 1.9366684, y: 1.9366696, z: 1.9366696}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -101,11 +101,11 @@ MonoBehaviour:
   rb: {fileID: 4201327376950025646}
   launchPower: 10
   bounceCount: 3
-  explosionEffect: {fileID: 185213551805216070, guid: a0abd40aa6c936e4e9a59bd23bda5561, type: 3}
+  radius: 2
   mask:
     serializedVersion: 2
     m_Bits: 64
-  radius: 2
+  explosionEffect: {fileID: 185213551805216070, guid: a0abd40aa6c936e4e9a59bd23bda5561, type: 3}
 --- !u!54 &4201327376950025646
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -5,19 +5,16 @@ using UnityEngine;
 public class LevelController : MonoBehaviour
 {
     [SerializeField] private List<GameObject> levels = new List<GameObject>();
-
-    public void Start()
-    {
-        Debug.Log("start");
-    }
+    private int levelIndex = 0;
 
     private void Awake()
     {
-        Debug.Log("aweke");
+        Vector3 spawnPosition = new Vector3(0, 0, 0);
+        Instantiate(levels[levelIndex], spawnPosition, Quaternion.identity);
     }
 
-    private void OnEnable()
+    public void IncreaseLevelIndex()
     {
-        Debug.Log("on enable");
+        levelIndex += 1;
     }
 }
