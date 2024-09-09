@@ -8,6 +8,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private UIMainScreen mainScreen;
     [SerializeField] private UILoseScreen loseScreen;
     [SerializeField] private UIWinScreen winScreen;
+    [SerializeField] private LevelController levelController;
 
     private void Start()
     {
@@ -21,6 +22,7 @@ public class UIController : MonoBehaviour
         mainScreen.gameObject.SetActive(false);
         loseScreen.gameObject.SetActive(false);
         winScreen.gameObject.SetActive(true);
+        levelController.IncreaseLevelIndex();
     }
 
     public void PlayerLose()

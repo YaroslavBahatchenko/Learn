@@ -5,8 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class UILoseScreen : MonoBehaviour
 {
-    public void ButtonRestart()
+    [SerializeField] private LevelController levelController;
+
+    public void Restart()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void SkipLevel()
+    {
+        levelController.IncreaseLevelIndex();
+        Restart();
     }
 }
