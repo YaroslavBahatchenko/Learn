@@ -10,6 +10,7 @@ public class Grenade : MonoBehaviour
     [SerializeField] private float radius = 3f;
     [SerializeField] private LayerMask mask;
     [SerializeField] private ParticleSystem explosionEffect;
+    [SerializeField] private float explosionForce = 10f;
     private int currentBounceCount = 0;
 
     public void Launch(Vector3 direction)
@@ -21,6 +22,9 @@ public class Grenade : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        if (other.gameObject.layer == 6 || other.gameObject.layer == 9) {
+            Explode();        
+        }
         currentBounceCount++;
         if (currentBounceCount >= bounceCount)
         {
@@ -34,7 +38,21 @@ public class Grenade : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius, mask);
         foreach (var hitCollider in hitColliders)
         {
-            hitCollider.GetComponent<Enemy>().Death();
+            if (hitCollider.TryGetComponent<Enemy>(out Enemy enemy))
+            {
+                enemy.Death();
+            }
+
+            if (hitCollider.TryGetComponent<Box>(out Box box))
+            {
+                box.Push(explosionForce, transform.position, radius);
+            }
+
+            if (hitCollider.TryGetComponent<Barrel>(out Barrel barrel))
+            {
+                barrel.Explode();
+            }
+
         }
         if (explosionEffect != null)
         {

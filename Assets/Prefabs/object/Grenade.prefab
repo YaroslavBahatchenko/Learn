@@ -99,13 +99,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 4201327376950025646}
-  launchPower: 10
+  launchPower: 12
   bounceCount: 3
   radius: 2
   mask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   explosionEffect: {fileID: 185213551805216070, guid: a0abd40aa6c936e4e9a59bd23bda5561, type: 3}
+  explosionForce: 20
 --- !u!54 &4201327376950025646
 Rigidbody:
   m_ObjectHideFlags: 0

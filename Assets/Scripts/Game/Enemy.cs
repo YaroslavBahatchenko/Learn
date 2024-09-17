@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private RagdollController ragdollController;
     private EnemyController enemyController;
+    private bool isDead = false;
 
     private void Start()
     {
@@ -20,6 +21,12 @@ public class Enemy : MonoBehaviour
     // смерть противника
     public void Death()
     {
+        if (isDead)
+        {
+            return;
+        }
+        isDead = true;
+
         Debug.Log("Enemy dead");
 
         animator.enabled = false; // выключаем аниматор, чтобы заработал регдоллл
