@@ -541,6 +541,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3851491086090665474, guid: 5392a9167bf4cf04cae64923153d6132, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: eab7c53c7befecf49ab24a0acfac6041, type: 2}
+    - target: {fileID: 3851491086090665474, guid: 5392a9167bf4cf04cae64923153d6132, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'DEF-f_ring.01.R'\n\tTransform 'DEF-spine.002'\n\tTransform
+        'DEF-shoulder.R'\n\tTransform 'DEF-thumb.01.L'\n\tTransform 'DEF-f_index.01.L'\n\tTransform
+        'DEF-f_middle.01.R'\n\tTransform 'DEF-f_pinky.01.R'\n\tTransform 'DEF-spine.003'\n\tTransform
+        'DEF-f_middle.01.L'\n\tTransform 'DEF-upper_arm.L'\n\tand more ...\n\tFrom
+        animation clip 'mixamo.com'\n\tFrom animation clip 'mixamo.com'"
+      objectReference: {fileID: 0}
     - target: {fileID: 7370321103858052964, guid: 5392a9167bf4cf04cae64923153d6132, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.3574704
