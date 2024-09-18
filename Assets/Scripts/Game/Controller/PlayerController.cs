@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && isCanShoot)
         {
             player.GetAimLine().gameObject.SetActive(true);
+            player.StartAim();
         }
 
         // отпускаем левую кнопку мыши. Выключаем линию прицеливания и бросаем гранату
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
         {
             player.GetAimLine().gameObject.SetActive(false);
             Shoot(); // бросаем гранату
+            player.ThrowGrenade();
         }
 
         // поворачиваем линию прицеливания за джойстиком если нажата левая кнопка мыши
