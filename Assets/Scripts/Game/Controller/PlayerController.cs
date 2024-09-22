@@ -1,24 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Build;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private FloatingJoystick joystick;
     [SerializeField] private Grenade grenadePrefab;
-    //[SerializeField] private Transform aimLine;
-    //[SerializeField] private Transform spawnPoint;
     [SerializeField] private UIMainScreen mainScreen;
+    [SerializeField] private float delayToShoot = 0.1f;
     private Vector3 launchDirection;
     private bool isCanShoot = true;
     private Player player;
+    private Vector3 startScale;
 
     // Start is called before the first frame update
     private void Start()
     {
         player = FindObjectOfType<Player>();
-        player.GetAimLine().gameObject.SetActive(false); 
+        player.GetAimLine().gameObject.SetActive(false);
+        startScale = player.GetPlayerPivot().localScale;
     }
 
     // Update is called once per frame
@@ -35,8 +35,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && isCanShoot)
         {
             player.GetAimLine().gameObject.SetActive(false);
-            Shoot(); // бросаем гранату
-            player.ThrowGrenade();
+            if (isCanShoot)
+            {
+                StartCoroutine(Shoot()); // бросаем гранату
+                player.ThrowGrenade();
+            }
         }
 
         // поворачиваем линию прицеливания за джойстиком если нажата левая кнопка мыши
@@ -45,17 +48,16 @@ public class PlayerController : MonoBehaviour
             float angel = Vector2.Angle(Vector2.right, joystick.Direction);
             player.GetAimLine().eulerAngles = new Vector3(0, 0, angel * Mathf.Sign(joystick.Direction.y));
             launchDirection = joystick.Direction;
+            Vector3 currentScale = startScale;                  // 2.3 2.3
+            currentScale.x *= Mathf.Sign(joystick.Direction.x); // -2.3 -2.3
+            player.GetPlayerPivot().localScale = currentScale;  // -2.3 -2.3
         }
     }
 
     // бросаем гранату
-    private void Shoot()
+    private IEnumerator Shoot()
     {
-        if (!isCanShoot)
-        {
-            return;
-        }
-
+        yield return new WaitForSeconds(delayToShoot);
         Debug.Log("shoot");
         //создаем гранату
         Grenade newGrenade = Instantiate(grenadePrefab, player.GetGrenadeSpawnPoint().position, Quaternion.identity);

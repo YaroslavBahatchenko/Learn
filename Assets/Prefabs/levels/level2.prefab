@@ -3498,6 +3498,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5625803133060678515}
     m_Modifications:
+    - target: {fileID: 1021833126180471006, guid: 2bf91bcc9d4aa6e46a6d0c4a823696e5, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3747050321755810442, guid: 2bf91bcc9d4aa6e46a6d0c4a823696e5, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3558,6 +3562,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -1.372
       objectReference: {fileID: 0}
+    - target: {fileID: 7505602834992492281, guid: 2bf91bcc9d4aa6e46a6d0c4a823696e5, type: 3}
+      propertyPath: deathSouds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505602834992492281, guid: 2bf91bcc9d4aa6e46a6d0c4a823696e5, type: 3}
+      propertyPath: deathSouds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 519801671f4ed224fa3e750d370ea728, type: 3}
+    - target: {fileID: 7505602834992492281, guid: 2bf91bcc9d4aa6e46a6d0c4a823696e5, type: 3}
+      propertyPath: deathSouds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 831598e03e61e6d4d8b50432bcb81b1f, type: 3}
+    - target: {fileID: 7505602834992492281, guid: 2bf91bcc9d4aa6e46a6d0c4a823696e5, type: 3}
+      propertyPath: deathSouds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2f403223dc3ca29478998b131c82a78d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

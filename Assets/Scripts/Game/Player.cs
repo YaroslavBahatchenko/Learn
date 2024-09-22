@@ -35,5 +35,10 @@ public class Player : MonoBehaviour
         animator.SetTrigger("Throw"); // запускаем анимацию броска
         grenade.SetActive(false); // выключаем отображение гранаты
     }
+
+    public Transform GetPlayerPivot()
+    {
+        return animator.transform;
+    }
 }
 

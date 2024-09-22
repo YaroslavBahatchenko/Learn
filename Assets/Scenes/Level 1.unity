@@ -3999,6 +3999,7 @@ MonoBehaviour:
   joystick: {fileID: 539700210}
   grenadePrefab: {fileID: 7110118961271677771, guid: 23c29ab3d40736d459c6b59e5d8aedf5, type: 3}
   mainScreen: {fileID: 1216974358}
+  delayToShoot: 0.3
 --- !u!4 &1904138413
 Transform:
   m_ObjectHideFlags: 0

@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private RagdollController ragdollController;
+    [SerializeField] private List<AudioClip> deathSouds = new List<AudioClip>();
+    [SerializeField] private AudioSource audioSource;
     private EnemyController enemyController;
     private bool isDead = false;
 
@@ -29,6 +31,9 @@ public class Enemy : MonoBehaviour
 
         Debug.Log("Enemy dead");
 
+
+        audioSource.clip = deathSouds[Random.Range(0, deathSouds.Count)];
+        audioSource.Play();
         animator.enabled = false; // выключаем аниматор, чтобы заработал регдоллл
         ragdollController.Ragdoll(true); //включаем регдолл
         gameObject.layer = 7; // меняем слой у противика, чтобы с ним не пересекалась граната при следующем броске
