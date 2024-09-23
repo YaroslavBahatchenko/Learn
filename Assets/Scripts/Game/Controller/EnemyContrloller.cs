@@ -7,11 +7,13 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private UIController uIController;
     [SerializeField] private PlayerController playerController;
     private List<Enemy> enemies = new List<Enemy>(); // список противников на текущем уровне
+    private int levelEnemyCount = 0;
 
     // регистрация противника в контроллере
     public void Register(Enemy newEnemy)
     {
         enemies.Add(newEnemy); // добавление нового противника в общий список
+        levelEnemyCount++;
     }
 
     // удаление при его смерти
@@ -30,8 +32,15 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public int EnemyCount()
+    // получить количество живых противников
+    public int GetAliveEnemyCount()
     {
         return enemies.Count;
+    }
+
+    // получить количество провтивников на уровне
+    public int GetLevelEnemyCount()
+    {
+        return levelEnemyCount;
     }
 }

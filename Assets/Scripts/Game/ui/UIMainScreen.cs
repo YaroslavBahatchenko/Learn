@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIMainScreen : MonoBehaviour
 {
@@ -15,10 +16,25 @@ public class UIMainScreen : MonoBehaviour
     [SerializeField] private EnemyController enemyController;
     [SerializeField] private UIController uIController;
     [SerializeField] private LevelController levelController;
+    [SerializeField] private Sprite soundOn;
+    [SerializeField] private Sprite soundOff;
+    [SerializeField] private Image soundIcon;
     private List<UIBombIcon> bombIcons = new List<UIBombIcon>();
+    private int isSound;
 
     private void Start()
     {
+        isSound = PlayerPrefs.GetInt("IsSound");
+        AudioListener.volume = isSound;
+        if (isSound == 0)
+        {
+            soundIcon.sprite = soundOff;
+        }
+        else
+        {
+            soundIcon.sprite = soundOn;
+        }
+
         for (int i = 0; i < bombCount; i++)
         {
             bombIcons.Add(Instantiate(bombIconPrefab, bombGroup));
@@ -41,7 +57,7 @@ public class UIMainScreen : MonoBehaviour
     {
         playerController.CannotShoot();
         yield return new WaitForSeconds(3f);
-        if (enemyController.EnemyCount() > 0)
+        if (enemyController.GetAliveEnemyCount() > 0)
         {
             uIController.PlayerLose();
         }
@@ -51,5 +67,21 @@ public class UIMainScreen : MonoBehaviour
     {
         levelController.IncreaseLevelIndex();
         SceneManager.LoadScene(0);
+    }
+
+    public void SwitchSound()
+    {
+        if (isSound == 0)
+        {
+            isSound = 1;
+            soundIcon.sprite = soundOn;
+        }
+        else
+        {
+            isSound = 0;
+            soundIcon.sprite = soundOff;
+        }
+        AudioListener.volume = isSound;
+        PlayerPrefs.SetInt("IsSound", isSound);
     }
 }
